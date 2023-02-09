@@ -1,12 +1,21 @@
 package dev.joeyk;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         introduction();
-        game();
+        ArrayList<Integer> scores = new ArrayList<>();
+        scores.add(game());
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you want to play again? (y/n)");
+        String continuePlaying = input.nextLine();
+        while (continuePlaying.equals("y")){
+            scores.add(game());
+            System.out.println("Do you want to play again? (y/n)");
+            continuePlaying = input.nextLine();
+        }
+        results(scores);
     }
 
     public static void introduction(){
@@ -18,7 +27,7 @@ public class Main {
                 "than your guess.");
     }
 
-    public static void game(){
+    public static int game(){
         Random r = new Random();
         int number = r.nextInt(100) + 1;
         Scanner input = new Scanner(System.in);
@@ -34,6 +43,19 @@ public class Main {
             guess = input.nextInt();
             numberOfGuesses ++;
         }
-        System.out.printf("You got it right in %s guesses", numberOfGuesses);
+        System.out.printf("You got it right in %s guesses\n", numberOfGuesses);
+        return numberOfGuesses;
+    }
+
+    public static void results(List<Integer> scores){
+        int guessSum = 0;
+        for(Integer score : scores){
+            guessSum += score;
+        }
+        System.out.println("Overall results:\n" +
+                           "    total games   = " + scores.size() +"\n" +
+                           "    total guesses = " + guessSum + "\n" +
+                           "    guesses/game  = " + guessSum/scores.size() + "\n" +
+                           "    best game     = " + Collections.min(scores));
     }
 }
