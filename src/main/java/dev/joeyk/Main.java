@@ -6,14 +6,12 @@ public class Main {
     public static void main(String[] args) {
         introduction();
         ArrayList<Integer> scores = new ArrayList<>();
-        scores.add(game());
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to play again? (y/n)");
-        String continuePlaying = input.nextLine();
-        while (continuePlaying.equals("y")){
+        String inPlay = "y";
+        while (inPlay.equals("y")){
             scores.add(game());
             System.out.println("Do you want to play again? (y/n)");
-            continuePlaying = input.nextLine();
+            inPlay = input.nextLine();
         }
         results(scores);
     }
@@ -49,6 +47,7 @@ public class Main {
 
     public static void results(List<Integer> scores){
         int guessSum = 0;
+        int bestGame = scores.indexOf(Collections.min(scores)) + 1;
         for(Integer score : scores){
             guessSum += score;
         }
@@ -56,6 +55,6 @@ public class Main {
                            "    total games   = " + scores.size() +"\n" +
                            "    total guesses = " + guessSum + "\n" +
                            "    guesses/game  = " + guessSum/scores.size() + "\n" +
-                           "    best game     = " + Collections.min(scores));
+                           "    best game     = " + bestGame);
     }
 }
