@@ -43,7 +43,7 @@ public class Main {
             guess = input.nextInt();
             numberOfGuesses ++;
         }
-        System.out.printf("You got it right in %s guesses\n", numberOfGuesses);
+        System.out.printf("You got it right in %s %s\n", numberOfGuesses, numberOfGuesses > 1 ? "guesses" : "guess");
         return numberOfGuesses;
     }
 
@@ -53,10 +53,11 @@ public class Main {
         for(Integer score : scores){
             guessSum += score;
         }
+        double guessAvg = Math.round((guessSum/scores.size()) * 10) / 10.0;
         System.out.println("Overall results:\n" +
                            "    total games   = " + scores.size() +"\n" +
                            "    total guesses = " + guessSum + "\n" +
-                           "    guesses/game  = " + guessSum/scores.size() + "\n" +
+                           "    guesses/game  = " + guessAvg + "\n" +
                            "    best game     = " + bestGame);
     }
 }
