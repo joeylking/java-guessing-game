@@ -3,6 +3,8 @@ package dev.joeyk;
 import java.util.*;
 
 public class Main {
+
+    static final int MAX_NUMBER = 50;
     public static void main(String[] args) {
         introduction();
         ArrayList<Integer> scores = new ArrayList<>();
@@ -19,17 +21,17 @@ public class Main {
     public static void introduction(){
         System.out.println("This program allows you to play a guessing game.\n" +
                 "I will think of a number between 1 and \n" +
-                "100 and will allow you to guess until\n" +
+                MAX_NUMBER + " and will allow you to guess until\n" +
                 "you get it.  For each guess, I will tell you\n" +
                 "whether the right answer is higher or lower\n" +
-                "than your guess.");
+                "than your guess.\n");
     }
 
     public static int game(){
         Random r = new Random();
-        int number = r.nextInt(100) + 1;
+        int number = r.nextInt(MAX_NUMBER) + 1;
         Scanner input = new Scanner(System.in);
-        System.out.println("I'm thinking of a number between 1 and 100...\n" +
+        System.out.println("I'm thinking of a number between 1 and " + MAX_NUMBER + "...\n" +
                 "Your guess? ");
         int guess = input.nextInt();
         int numberOfGuesses = 1;
