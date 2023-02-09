@@ -7,11 +7,11 @@ public class Main {
         introduction();
         ArrayList<Integer> scores = new ArrayList<>();
         Scanner input = new Scanner(System.in);
-        String inPlay = "y";
-        while (inPlay.equals("y")){
+        char inPlay = 'y';
+        while (inPlay == 'y'){
             scores.add(game());
-            System.out.println("Do you want to play again? (y/n)");
-            inPlay = input.nextLine();
+            System.out.println("Do you want to play again? ");
+            inPlay = input.nextLine().toLowerCase().charAt(0);
         }
         results(scores);
     }
